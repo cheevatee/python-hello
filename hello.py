@@ -3,7 +3,7 @@ from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
-metrics.register_endpoint('/metrics')
+metrics.register_endpoint('/app-metrics')
 
 #print(__name__)
 
