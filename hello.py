@@ -14,10 +14,6 @@ def home():
 #    return render_template('home-hello.html')
     return render_template('home-hello.html', name='Tee')
 
-@app.route('/about')
-def about():
-    return 'This is a about page'
-
 @app.route('/test')
 def about():
     return 'Hello test'
