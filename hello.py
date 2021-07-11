@@ -6,6 +6,9 @@ metrics = PrometheusMetrics(app)
 
 #print(__name__)
 
+# static information as metric
+metrics.info('app_info', 'Application info', version='1.0.3')
+
 @app.route('/')
 def home():
 #    return 'Hello World!'
