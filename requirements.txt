@@ -3,4 +3,4 @@
 
 # newest version
 Flask
-prometheus_flask_exporter
+prometheus_client
