@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify
 ##from prometheus_flask_exporter import PrometheusMetrics
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from prometheus_client import make_wsgi_app
 from flask_prometheus_metrics import register_metrics
 
