@@ -4,7 +4,7 @@ from prometheus_client import make_wsgi_app
 from flask_prometheus_metrics import register_metrics
 
 app = Flask(__name__)
-metrics = PrometheusMetrics(app)
+##metrics = PrometheusMetrics(app)
 
 #print(__name__)
 
