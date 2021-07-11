@@ -4,5 +4,3 @@
 # newest version
 Flask
 prometheus_flask_exporter
-prometheus_client
-flask_prometheus_metrics
