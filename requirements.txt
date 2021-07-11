@@ -4,3 +4,4 @@
 # newest version
 Flask
 prometheus_client
+flask_prometheus_metrics
