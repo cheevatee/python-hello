@@ -1,1 +1,6 @@
-Flask==2.0.1
+# Specific version
+# Flask==2.0.1
+
+# newest version
+Flask
+prometheus_flask_exporter
