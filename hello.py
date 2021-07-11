@@ -2,7 +2,8 @@ from flask import Flask, render_template, jsonify
 from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
-metrics = PrometheusMetrics(app)
+metrics = UWsgiPrometheusMetrics(app)
+metrics.register_endpoint('/metrics')
 
 #print(__name__)
 
