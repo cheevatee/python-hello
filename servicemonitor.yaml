@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: monitor-app-metrics
+  name: monitor-app-metrics
+  namespace: python-hello
+spec:
+  # namespaceSelector:
+  #   matchNames:
+  #     - project1
+  endpoints:
+  - interval: 30s
+    port: 8080-tcp
+    path: /metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app: monitor-app-metrics
