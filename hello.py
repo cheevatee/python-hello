@@ -14,16 +14,16 @@ def home():
     return render_template('home-hello.html', name='Tee')
 
 @app.route('/ping')
-def about():
+def pingpong():
     return 'pong'
 
 @app.route('/fast')
-def first_route():
+def fast():
     time.sleep(random.random() * 0.2)
     return 'ok'
 
 @app.route('/slow')
-def first_route():
+def slow():
     time.sleep(2)
     return 'ok'
 
@@ -32,4 +32,4 @@ def oops():
     return ':(', 500
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, threaded=True)
+    app.run(host="0.0.0.0", port=8080, threaded=True)
