@@ -24,7 +24,7 @@ def fast():
 
 @app.route('/slow')
 def slow():
-    time.sleep(2)
+    time.sleep(6)
     return 'ok'
 
 @app.route('/error')
