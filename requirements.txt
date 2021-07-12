@@ -1,9 +1,10 @@
 # Specific version
 # Flask==2.0.1
 
-# newest version
+# Newest version
 Flask
-prometheus_client
-flask_prometheus_metrics
 prometheus_flask_exporter
 
+# Not used
+# prometheus_flask_exporter
+# prometheus_client
