@@ -1,9 +1,18 @@
 from flask import Flask, render_template
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from prometheus_client import make_wsgi_app
-from flask_prometheus_metrics import register_metrics
+##from werkzeug.middleware.dispatcher import DispatcherMiddleware
+##from prometheus_client import make_wsgi_app
+##from flask_prometheus_metrics import register_metrics
+
+from prometheus_client import multiprocess
+from prometheus_client.core import CollectorRegistry
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 app = Flask(__name__)
+
+registry = CollectorRegistry()
+multiprocess.MultiProcessCollector(registry, path='/tmp')
+metrics = PrometheusMetrics(app, registry=registry)
 
 #print(__name__)
 
@@ -13,14 +22,14 @@ def home():
 #    return render_template('home-hello.html')
     return render_template('home-hello.html', name='Tee')
 
-@app.route('/test')
+@app.route('/ping')
 def about():
-    return 'Hello test'
+    return 'pong'
 
-register_metrics(app, app_version="v0.1.2", app_config="staging")
+##register_metrics(app, app_version="v0.1.2", app_config="staging")
 
-# Add prometheus wsgi middleware to route /metrics requests
-app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {'/metrics': make_wsgi_app()})
+## Add prometheus wsgi middleware to route /metrics requests
+##app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {'/metrics': make_wsgi_app()})
 
 if __name__ == '__main__':  # Script executed directly?
 #    app.run(host="0.0.0.0", port=5000, debug=True,use_reloader=True)
