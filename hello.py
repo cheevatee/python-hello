@@ -28,4 +28,4 @@ app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {'/metrics': make_wsgi_app()})
 if __name__ == '__main__':  # Script executed directly?
 #    app.run(host="0.0.0.0", port=5000, debug=True,use_reloader=True)
 #    app.run(host="0.0.0.0", port=8080, debug=True,use_reloader=True)
-    run_simple("0.0.0.0", 8080, create_dispatcher(), use_reloader=True, use_debugger=True, use_evalex=True,)
+    run_simple("0.0.0.0", 8080, app.wsgi_app(), use_reloader=True, use_debugger=True, use_evalex=True,)
