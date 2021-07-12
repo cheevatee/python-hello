@@ -1,27 +1,45 @@
-from flask import Flask, render_template
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from prometheus_client import make_wsgi_app
-from flask_prometheus_metrics import register_metrics
+import time
+import random
+
+from flask import Flask
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 app = Flask(__name__)
+PrometheusMetrics(app)
 
-#print(__name__)
 
-@app.route('/')
-def home():
-#    return 'Hello Flask!'
-#    return render_template('home-hello.html')
-    return render_template('home-hello.html', name='Tee')
+endpoints = ('one', 'two', 'three', 'four', 'five', 'error')
 
-@app.route('/test')
-def about():
-    return 'Hello test'
 
-register_metrics(app, app_version="v0.1.2", app_config="staging")
+@app.route('/one')
+def first_route():
+    time.sleep(random.random() * 0.2)
+    return 'ok'
 
-# Add prometheus wsgi middleware to route /metrics requests
-app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {'/metrics': make_wsgi_app()})
 
-if __name__ == '__main__':  # Script executed directly?
-#    app.run(host="0.0.0.0", port=5000, debug=True,use_reloader=True)
-     app.run(host="0.0.0.0", port=8080, debug=True,use_reloader=True)
+@app.route('/two')
+def the_second():
+    time.sleep(random.random() * 0.4)
+    return 'ok'
+
+
+@app.route('/three')
+def test_3rd():
+    time.sleep(random.random() * 0.6)
+    return 'ok'
+
+
+@app.route('/four')
+def fourth_one():
+    time.sleep(random.random() * 0.8)
+    return 'ok'
+
+
+@app.route('/error')
+def oops():
+    return ':(', 500
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', 5000, threaded=True)
