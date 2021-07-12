@@ -1,45 +1,36 @@
 import time
 import random
 
-from flask import Flask
+from flask import Flask, render_template
 from prometheus_flask_exporter import PrometheusMetrics
-
 
 app = Flask(__name__)
 PrometheusMetrics(app)
 
-
 endpoints = ('one', 'two', 'three', 'four', 'five', 'error')
 
+@app.route('/')
+def home():
+    return render_template('home-hello.html', name='Tee')
 
-@app.route('/one')
-def first_route():
+@app.route('/ping')
+def pingpong():
     time.sleep(random.random() * 0.2)
-    return 'ok'
+    return 'pong'
 
-
-@app.route('/two')
-def the_second():
+@app.route('/fast')
+def fast():
     time.sleep(random.random() * 0.4)
     return 'ok'
 
-
-@app.route('/three')
-def test_3rd():
-    time.sleep(random.random() * 0.6)
+@app.route('/slow')
+def slow():
+    time.sleep(random.random() * 5)
     return 'ok'
-
-
-@app.route('/four')
-def fourth_one():
-    time.sleep(random.random() * 0.8)
-    return 'ok'
-
 
 @app.route('/error')
 def oops():
     return ':(', 500
 
-
 if __name__ == '__main__':
-    app.run('0.0.0.0', 5000, threaded=True)
+    app.run(host="0.0.0.0", port=8080, threaded=True)
