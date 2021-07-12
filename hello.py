@@ -13,19 +13,24 @@ endpoints = ('one', 'two', 'three', 'four', 'five', 'error')
 def home():
     return render_template('home-hello.html', name='Tee')
 
-@app.route('/ping')
-def pingpong():
+@app.route('/one')
+def one():
     time.sleep(random.random() * 0.2)
     return 'pong'
 
-@app.route('/fast')
-def fast():
+@app.route('/two')
+def two():
     time.sleep(random.random() * 0.4)
     return 'ok'
 
-@app.route('/slow')
-def slow():
-    time.sleep(random.random() * 5)
+@app.route('/three')
+def three():
+    time.sleep(random.random() * 0.6)
+    return 'ok'
+
+@app.route('/four')
+def four():
+    time.sleep(random.random() * 0.8)
     return 'ok'
 
 @app.route('/error')
