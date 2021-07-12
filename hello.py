@@ -11,9 +11,9 @@ PrometheusMetrics(app)
 
 endpoints = ('one', 'two', 'three', 'four', 'five', 'error')
 
-@app.route('/test')
+@app.route('/')
 def home():
-    return render_template('home-hello.html', name='Test')
+    return render_template('home-hello.html', name='Tee')
 
 @app.route('/ping')
 def about():
@@ -29,4 +29,4 @@ def oops():
     return ':(', 500
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 5000, threaded=True)
+    app.run(host="0.0.0.0", port=8080, threaded=True, debug=True,use_reloader=True)
