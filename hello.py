@@ -10,7 +10,7 @@ endpoints = ('test', 'ping')
 
 @app.route('/test')
 def home():
-    return render_template('home-hello.html', name='Test')
+    return 'test'
 
 @app.route('/ping')
 def about():
